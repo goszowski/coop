@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="{{ asset('styles/sublime.css') }}">
   <!-- endbuild -->
 
+  <style>
+    .text-white {color: #fff!important;}
+  </style>
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
