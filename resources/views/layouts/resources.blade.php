@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
   <!-- /meta -->
 
-  <title>Sublime - Web Application Admin Dashboard</title>
+  <title>Укркоопспілка</title>
 
   <!-- page level plugin styles -->
   <!-- /page level plugin styles -->
