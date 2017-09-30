@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'register_token' => str_random(255),
         ]);
 
-        $user->notify(new RegistrationComplete());
+        $user->notify(new RegistrationComplete);
 
         $admin_roles = Role::where('name', 'admin')->with('users')->first();
         Notification::send($admin_roles->users, new NewRegisterActivation($user));

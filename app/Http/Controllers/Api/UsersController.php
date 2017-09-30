@@ -7,6 +7,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
+use App\Notifications\ActivationComplete;
 
 class UsersController extends Controller
 {
@@ -22,6 +23,8 @@ class UsersController extends Controller
         $user->is_active = true;
         $user->register_token = null;
         $user->save();
+
+        $user->notify(new ActivationComplete);
 
         return view('messages.activation');
     }
