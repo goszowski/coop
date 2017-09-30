@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'register_token' => str_random(255),
+            'register_token' => str_random(25),
         ]);
 
         $user->notify(new RegistrationComplete);
