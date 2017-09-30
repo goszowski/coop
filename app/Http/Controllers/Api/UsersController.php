@@ -22,5 +22,7 @@ class UsersController extends Controller
         $user->is_active = true;
         $user->register_token = null;
         $user->save();
+
+        return view('messages.activation');
     }
 }

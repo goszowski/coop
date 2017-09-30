@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\RegistrationComplete;
+use App\Notifications\NewRegisterActivation;
+use Notification;
 
 class RegisterController extends Controller
 {
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -62,11 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'register_token' => str_random(255),
         ]);
+
+        $user->notify(new RegistrationComplete());
+
+        $admin_roles = Role::where('name', 'admin')->with('users')->first();
+        Notification::send($admin_roles->users, new NewRegisterActivation($user));
+
+        return $user;
     }
 }

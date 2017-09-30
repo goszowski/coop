@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['namespace'=>'Api'], function() {
-    Route::group(['prefix'=>'users'], function() {
+Route::group(['namespace'=>'Api', 'as'=>'api.'], function() {
+    Route::group(['prefix'=>'users', 'as'=>'users.'], function() {
         Route::get('activate/{email}/{token}', ['as'=>'activate', 'uses'=>'UsersController@activate']);
     });
 });
