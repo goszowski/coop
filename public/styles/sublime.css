@@ -3390,7 +3390,7 @@ textarea {
   resize: none;
 }
 select.form-control {
-  -webkit-appearance: menulist;
+  /*-webkit-appearance: menulist;*/
 }
 input[type="file"] {
   line-height: 1;

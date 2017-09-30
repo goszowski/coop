@@ -1,111 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.resources')
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('app')
+<div class="cover"></div>
+  <div class="overlay bg-color"></div>
+  <div class="app horizontal-layout boxed">
+    <!-- top header -->
+    <header class="header header-fixed navbar">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+      <div class="brand">
+        <!-- toggle offscreen menu -->
+        <a href="javascript:;" class="ti-menu navbar-toggle off-left visible-xs" data-toggle="collapse" data-target="#hor-menu"></a>
+        <!-- /toggle offscreen menu -->
 
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- logo -->
+        <a href="{{ url('/') }}" class="navbar-brand">
+          <img src="{{ asset('images/logo.png') }}" style="margin-top: 0;" alt="coop">
+        </a>
+        <!-- /logo -->
+      </div>
 
-        <!-- Scripts -->
-        <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
-        </script>
-    </head>
-    <body>
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+      <div class="collapse navbar-collapse pull-left" id="hor-menu">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="javascript:;">
+              <span>Асортимент</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:;" data-toggle="dropdown">
+              <span>Замовлення</span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="small_menu.html">
+                  <span>Нове замовлення</span>
+                </a>
+              </li>
+              <li>
+                <a href="right_menu.html">
+                  <span>Мої замовлення</span>
+                </a>
+              </li>
+              <li>
+                <a href="push_sidebar.html">
+                  <span>Усі замовлення</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:;" data-toggle="dropdown">
+              <span>Інформація</span>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="mail.html">
+                  <span>Mailbox</span>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+          <li class="dropdown">
+            <a href="javascript:;">
+              <span>Доставка і оплата</span>
+            </a>
+          </li>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+          <li class="dropdown">
+            <a href="javascript:;">
+              <span>Аналітика</span>
+            </a>
+          </li>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/admin') }}">Dashboard <span class="sr-only">(current)</span></a></li>
-                    </ul>
+          <li class="dropdown">
+            <a href="javascript:;">
+              <span>Контакти</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+      <ul class="nav navbar-nav navbar-right">
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        @if(Auth::user())
+          <li class="off-right">
+            <a href="javascript:;" data-toggle="dropdown">
+              <span>{{ Auth::user()->name }}</span>
+              <i class="ti-angle-down ti-caret"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="javascript:;">Settings</a>
+              </li>
+              <li>
+                <a href="javascript:;">Upgrade</a>
+              </li>
+              <li>
+                <a href="javascript:;">
+                  <div class="badge bg-danger pull-right">3</div>
+                  <span>Notifications</span>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;">Help</a>
+              </li>
+              <li>
+                <a href="{{ url('/logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
 
-        @if (Session::has('flash_message'))
-            <div class="container">
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ Session::get('flash_message') }}
-                </div>
-            </div>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
+        @else 
+          <li class="off-right">
+            <a href="{{ route('login') }}">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <span class="hidden-xs">Вхід</span>
+            </a>
+          </li>
+          <li class="off-right">
+            <a href="{{ route('register') }}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <span class="hidden-xs">Реєстрація</span>
+            </a>
+          </li>
         @endif
+        
 
-        @yield('content')
 
-        <hr/>
+      </ul>
+    </header>
+    <!-- /top header -->
 
-        <div class="container">
-            &copy; {{ date('Y') }}. Created by <a href="http://www.appzcoder.com">AppzCoder</a>
-            <br/>
+    <section class="layout">
+
+      <!-- main content -->
+      <section class="main-content">
+
+        <!-- content wrapper -->
+        <div class="content-wrap">
+
+          <!-- inner content wrapper -->
+          <div class="wrapper">
+            
+              @yield('content')
+
+          </div>
+          <!-- /inner content wrapper -->
+
         </div>
+        <!-- /content wrapper -->
+        <a class="exit-offscreen"></a>
+      </section>
+      <!-- /main content -->
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
+    </section>
 
-        <script type="text/javascript">
-            $(function () {
-                // Navigation active
-                $('ul.navbar-nav a[href="{{ "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" }}"]').closest('li').addClass('active');
-            });
-        </script>
-
-        @yield('scripts')
-    </body>
-</html>
+  </div>
+@endsection

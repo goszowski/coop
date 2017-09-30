@@ -9,6 +9,14 @@ use Session;
 
 class RolesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:roles.view')->only('index');
+        $this->middleware('can:roles.create')->only(['create', 'store']);
+        $this->middleware('can:roles.edit')->only(['edit', 'update']);
+        $this->middleware('can:roles.delete')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

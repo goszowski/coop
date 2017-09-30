@@ -10,6 +10,14 @@ use Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:users.view')->only('index');
+        $this->middleware('can:users.create')->only(['create', 'store']);
+        $this->middleware('can:users.edit')->only(['edit', 'update']);
+        $this->middleware('can:users.delete')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +64,7 @@ class UsersController extends Controller
 
         $data = $request->except('password');
         $data['password'] = bcrypt($request->password);
+        $data['is_active'] = true;
         $user = User::create($data);
 
         foreach ($request->roles as $role) {

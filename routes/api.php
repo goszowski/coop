@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['namespace'=>'Api'], function() {
+    Route::group(['prefix'=>'users'], function() {
+        Route::get('activate/{email}/{token}', ['as'=>'activate', 'uses'=>'UsersController@activate']);
+    });
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

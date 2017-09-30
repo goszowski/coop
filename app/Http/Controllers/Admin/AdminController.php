@@ -10,6 +10,12 @@ use Session;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin_view')->only('index');
+        $this->middleware('can:attach_role_permissions')->only(['getGiveRolePermissions', 'postGiveRolePermissions']);
+    }
+    
     /**
      * Display a listing of the resource.
      *

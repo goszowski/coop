@@ -11,19 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
 
-Route::get('admin', 'Admin\AdminController@index');
-Route::get('admin/give-role-permissions', 'Admin\AdminController@getGiveRolePermissions');
-Route::post('admin/give-role-permissions', 'Admin\AdminController@postGiveRolePermissions');
-Route::resource('admin/roles', 'Admin\RolesController');
-Route::resource('admin/permissions', 'Admin\PermissionsController');
-Route::resource('admin/users', 'Admin\UsersController');
-Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+Route::group(['middleware'=>['auth', 'auth_active']], function() {
+
+    Route::group(['prefix'=>'admin'], function() {
+        Route::get('/', 'Admin\AdminController@index');
+        Route::get('/give-role-permissions', 'Admin\AdminController@getGiveRolePermissions');
+        Route::post('/give-role-permissions', 'Admin\AdminController@postGiveRolePermissions');
+        Route::resource('/roles', 'Admin\RolesController');
+        Route::resource('/permissions', 'Admin\PermissionsController');
+        Route::resource('/users', 'Admin\UsersController');
+        Route::get('/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+        Route::post('/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+    });
+    
+});

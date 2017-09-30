@@ -1,35 +1,27 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+@section('admin')
+    <div class="panel panel-default">
+        <div class="panel-heading">Create New User</div>
+        <div class="panel-body">
+            <a href="{{ url('/admin/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+            <br />
+            <br />
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create New User</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+            {!! Form::open(['url' => '/admin/users', 'class' => 'form-horizontal']) !!}
 
-                        {!! Form::open(['url' => '/admin/users', 'class' => 'form-horizontal']) !!}
+            @include ('admin.users.form')
 
-                        @include ('admin.users.form')
+            {!! Form::close() !!}
 
-                        {!! Form::close() !!}
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

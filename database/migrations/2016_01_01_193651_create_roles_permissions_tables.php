@@ -2,9 +2,39 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use App\User;
+use App\Role;
+use App\Permission;
 
 class CreateRolesPermissionsTables extends Migration
 {
+    protected $roles = [
+        'Developer',
+        'Admin',
+        'Manager',
+    ];
+
+    protected $permissions = [
+        ['name' => 'crud_generator',            'label' => 'Can use CRUD Generator'],
+        ['name' => 'attach_role_permissions',   'label' => 'Can attach permissions to roles'],
+        ['name' => 'admin_view',                'label' => 'Can admin home page'],
+
+        ['name' => 'users.create',              'label' => 'Can create users'],
+        ['name' => 'users.view',                'label' => 'Can view users'],
+        ['name' => 'users.edit',                'label' => 'Can edit users'],
+        ['name' => 'users.delete',              'label' => 'Can delete users'],
+
+        ['name' => 'roles.create',              'label' => 'Can create roles'],
+        ['name' => 'roles.view',                'label' => 'Can view roles'],
+        ['name' => 'roles.edit',                'label' => 'Can edit roles'],
+        ['name' => 'roles.delete',              'label' => 'Can delete roles'],
+
+        ['name' => 'permissions.create',        'label' => 'Can create permissions'],
+        ['name' => 'permissions.view',          'label' => 'Can view permissions'],
+        ['name' => 'permissions.edit',          'label' => 'Can edit permissions'],
+        ['name' => 'permissions.delete',        'label' => 'Can delete permissions'],
+    ];
+
     /**
      * Run the migrations.
      *
@@ -59,6 +89,39 @@ class CreateRolesPermissionsTables extends Migration
 
             $table->primary(['role_id', 'user_id']);
         });
+
+
+
+        foreach($this->roles as $role)
+        {
+          Role::create([
+            'name' => snake_case($role),
+            'label' => $role,
+          ]);
+        }
+
+        foreach($this->permissions as $permission)
+        {
+          Permission::create([
+            'name' => $permission['name'],
+            'label' => $permission['label'],
+          ]);
+        }
+
+        $role = Role::with('permissions')->whereName('developer')->first();
+        foreach ($this->permissions as $permission) {
+            $permission = Permission::whereName($permission['name'])->first();
+            $role->givePermissionTo($permission);
+        }
+
+        $developerUser = User::create([
+            'name' => 'Рансайт ТОВ',
+            'email' => 'info@runsite.com.ua',
+            'password' => bcrypt('altertable025'),
+            'is_active' => true,
+        ]);
+
+        $developerUser->assignRole('developer');
     }
 
     /**
