@@ -22,9 +22,19 @@
       <div class="collapse navbar-collapse pull-left" id="hor-menu">
         <ul class="nav navbar-nav">
           <li>
-            <a href="javascript:;">
+            <a href="javascript:;" data-toggle="dropdown">
               <span>Асортимент</span>
+              <b class="caret"></b>
             </a>
+            <ul class="dropdown-menu">
+              @foreach($categories as $category)
+                <li>
+                  <a href="small_menu.html">
+                    <span>{{ $category->name }}</span>
+                  </a>
+                </li>
+              @endforeach
+            </ul>
           </li>
           <li class="dropdown">
             <a href="javascript:;" data-toggle="dropdown">
