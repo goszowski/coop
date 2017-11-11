@@ -19,11 +19,6 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'layouts.backend', AppComposer::class
         );
-
-        // Using Closure based composers...
-        View::composer('dashboard', function ($view) {
-            //
-        });
     }
 
     /**
