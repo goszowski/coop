@@ -162,6 +162,8 @@
 
           <!-- inner content wrapper -->
           <div class="wrapper">
+
+              <ol class="breadcrumb"> <li> <a href="javascript:;"><i class="ti-home mr5"></i>Dashboard</a> </li> <li> <a href="javascript:;"><i class="ti-window mr5"></i>Tables</a> </li> <li class="active">Basic Table Elements</li> </ol>
             
               @yield('content')
 
