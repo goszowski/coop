@@ -58,6 +58,7 @@
   <!-- /template scripts -->
 
   <!-- page script -->
+  @yield('scripts')
   <!-- /page script -->
 
 </body>
