@@ -29,3 +29,4 @@ Route::group(['middleware'=>['auth', 'auth_active']], function() {
     });
     
 });
+Route::resource('admin/categories', 'Admin\\CategoriesController');
