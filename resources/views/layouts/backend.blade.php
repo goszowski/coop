@@ -59,37 +59,7 @@
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="javascript:;" data-toggle="dropdown">
-              <span>Інформація</span>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="mail.html">
-                  <span>Mailbox</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="javascript:;">
-              <span>Доставка і оплата</span>
-            </a>
-          </li>
-
-          <li class="dropdown">
-            <a href="javascript:;">
-              <span>Аналітика</span>
-            </a>
-          </li>
-
-          <li class="dropdown">
-            <a href="javascript:;">
-              <span>Контакти</span>
-            </a>
-          </li>
+          
         </ul>
       </div>
 
