@@ -13,7 +13,7 @@
           <!-- /toggle offscreen menu -->
 
           <!-- logo -->
-          <a href="{{ url('/') }}" class="navbar-brand">
+          <a href="{{ url('/') }}" class="navbar-brand ripple-white">
             <img src="{{ asset('images/logo.png') }}" style="margin-top: 0;" alt="coop">
           </a>
           <!-- /logo -->
@@ -22,14 +22,14 @@
         <div class="collapse navbar-collapse pull-left" id="hor-menu">
           <ul class="nav navbar-nav">
             <li>
-              <a href="javascript:;" data-toggle="dropdown">
+              <a href="javascript:;" data-toggle="dropdown" class="ripple-white">
                 <span>Асортимент</span>
                 <b class="caret"></b>
               </a>
               @include('partials.menus.dropdown', ['categories'=>$categories])
             </li>
             <li class="dropdown">
-              <a href="javascript:;" data-toggle="dropdown">
+              <a href="javascript:;" data-toggle="dropdown" class="ripple-white">
                 <span>Замовлення</span>
                 <b class="caret"></b>
               </a>
@@ -60,7 +60,7 @@
 
           @if(Auth::user())
             <li class="off-right">
-              <a href="javascript:;" data-toggle="dropdown">
+              <a href="javascript:;" data-toggle="dropdown" class="ripple-white">
                 <span>{{ Auth::user()->name }}</span>
                 <i class="ti-angle-down ti-caret"></i>
               </a>
@@ -95,15 +95,9 @@
             </li>
           @else 
             <li class="off-right">
-              <a href="{{ route('login') }}">
+              <a href="{{ route('login') }}" class="ripple-white">
                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                 <span class="hidden-xs">Вхід</span>
-              </a>
-            </li>
-            <li class="off-right">
-              <a href="{{ route('register') }}">
-                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                <span class="hidden-xs">Реєстрація</span>
               </a>
             </li>
           @endif

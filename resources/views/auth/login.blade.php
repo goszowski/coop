@@ -36,7 +36,7 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block">
+    <button type="submit" class="btn btn-primary btn-lg btn-block ripple-white">
         Увійти
     </button>
 

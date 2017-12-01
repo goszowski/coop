@@ -18,6 +18,7 @@
   <!-- build:css({.tmp,app}) styles/app.min.css -->
   <link rel="stylesheet" href="{{ asset('vendor/select2/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/jripple/ripple.css') }}">
   {{-- <link rel="stylesheet" href="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('styles/font-awesome.css') }}">
   <link rel="stylesheet" href="{{ asset('styles/themify-icons.css') }}">
@@ -94,6 +95,7 @@
   <!-- build:js({.tmp,app}) scripts/app.min.js -->
   <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+  <script src="{{ asset('vendor/jripple/ripple.min.js') }}"></script>
   {{-- <script src="{{ asset('vendor/smartmenus/dist/jquery.smartmenus.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.min.js') }}"></script> --}}
   <script src="{{ asset('vendor/slimScroll/jquery.slimscroll.js') }}"></script>
@@ -121,7 +123,10 @@
           }
       });
 
-      // $('#main-nav').smartmenus();
+      $('.ripple-white').ripple({
+        color:'rgba(255, 255, 255, 0.3)',
+        time:'.35s'
+      });
 
 
       $('[data-api-route]').each(function() {
