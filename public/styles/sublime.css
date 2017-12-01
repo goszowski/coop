@@ -1048,7 +1048,7 @@ aside > .fffix > footer .btn-xs.navbar-btn {
     overflow: hidden;
   }
   .app .header-fixed + .layout {
-    padding-top: 100px;
+    padding-top: 50px;
   }
   .main-content {
     overflow: hidden;
