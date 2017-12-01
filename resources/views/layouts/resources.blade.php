@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{ asset('vendor/select2/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/jripple/ripple.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendor/pace/pace.css') }}">
   {{-- <link rel="stylesheet" href="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('styles/font-awesome.css') }}">
   <link rel="stylesheet" href="{{ asset('styles/themify-icons.css') }}">
@@ -103,6 +104,7 @@
   <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
   <script src="{{ asset('vendor/jripple/ripple.min.js') }}"></script>
+  <script src="{{ asset('vendor/pace/pace.js') }}"></script>
   <script src="{{ asset('vendor/particleground/jquery.particleground.min.js') }}"></script>
   {{-- <script src="{{ asset('vendor/smartmenus/dist/jquery.smartmenus.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.min.js') }}"></script> --}}
