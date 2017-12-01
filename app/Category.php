@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Category extends Model
 {
+    use PresentableTrait;
+
+    protected $presenter = 'App\Presenters\CategoryPresenter';
+
     /**
      * The database table used by the model.
      *
@@ -36,4 +41,5 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_category_id');
     }
+
 }

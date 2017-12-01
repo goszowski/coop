@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="description" content="Flat, Clean, Responsive, application admin template built with bootstrap 3">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- /meta -->
 
   <title>Укркоопспілка</title>
@@ -14,6 +16,7 @@
   <!-- /page level plugin styles -->
 
   <!-- build:css({.tmp,app}) styles/app.min.css -->
+  <link rel="stylesheet" href="{{ asset('vendor/select2/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('styles/font-awesome.css') }}">
   <link rel="stylesheet" href="{{ asset('styles/themify-icons.css') }}">
@@ -47,6 +50,8 @@
   <script src="{{ asset('vendor/jquery_appear/jquery.appear.js') }}"></script>
   <script src="{{ asset('vendor/jquery.placeholder.js') }}"></script>
   <script src="{{ asset('vendor/fastclick/lib/fastclick.js') }}"></script>
+  <script src="{{ asset('vendor/select2/dist/js/select2.min.js') }}"></script>
+  <script src="{{ asset('vendor/select2/dist/js/i18n/'.config('app.locale').'.js') }}"></script>
   <!-- endbuild -->
 
   <!-- page level scripts -->
@@ -56,6 +61,37 @@
   <script src="{{ asset('scripts/offscreen.js') }}"></script>
   <script src="{{ asset('scripts/main.js') }}"></script>
   <!-- /template scripts -->
+
+  <script>
+    $(function() {
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+
+      $('[data-api-route]').each(function() {
+        var item = $(this);
+        var action = item.data('api-route') + '?api_token=' + item.data('api-token');
+
+        item.select2({
+            minimumInputLength: 3,
+            language: '{{ config('app.locale') }}',
+            ajax: {
+              delay: 500,
+              url: action,
+              dataType: 'json',
+              data: function (term, page) {
+                return {
+                  q: term
+                }
+              }
+            }
+        });
+      });
+    });
+  </script>
 
   <!-- page script -->
   @yield('scripts')

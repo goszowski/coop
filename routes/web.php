@@ -15,7 +15,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware'=>['auth', 'auth_active']], function() {
+Route::group(['middleware'=>['auth']], function() {
+
+    Route::group(['middleware'=>['api_token'], 'namespace'=>'Api', 'as'=>'api.'], function() {
+        Route::group(['prefix'=>'category', 'as'=>'category.'], function() {
+            Route::get('find-by-name', ['as'=>'find-by-name', 'uses'=>'CategoriesController@findByName']);
+        });
+    });
 
     Route::group(['prefix'=>'admin'], function() {
         Route::get('/', 'Admin\AdminController@index');
