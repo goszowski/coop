@@ -141,10 +141,19 @@
       function buildPage()
       {
         $('[data-toggle="dropdown"]').parent().removeClass('open');
-        
+
+        setTimeout(function() {
+          $('.ripple-white, .ripple-dark').find('.ink').remove();
+        }, 500);
+
         $('.ripple-white').ripple({
           color:'rgba(255, 255, 255, 0.3)',
-          time:'.35s'
+          time:'.5s'
+        });
+
+        $('.ripple-dark').ripple({
+          color:'rgba(0, 0, 0, 0.3)',
+          time:'.5s'
         });
 
         $('.particles').particleground({

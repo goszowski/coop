@@ -18,4 +18,6 @@
         </div>
     </div>
 </div>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed odit cumque culpa. Non beatae nisi harum corrupti dignissimos vero atque sequi quod ad quo, obcaecati adipisci porro tempora soluta quia!</p>
 @endsection
