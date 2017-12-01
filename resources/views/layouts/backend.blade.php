@@ -26,15 +26,7 @@
               <span>Асортимент</span>
               <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
-              @foreach($categories as $category)
-                <li>
-                  <a href="small_menu.html">
-                    <span>{{ $category->name }}</span>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
+            @include('partials.menus.dropdown', ['categories'=>$categories])
           </li>
           <li class="dropdown">
             <a href="javascript:;" data-toggle="dropdown">

@@ -22,8 +22,7 @@ class AppComposer
      */
     public function __construct()
     {
-        // Dependencies automatically resolved by service container...
-        $this->categories = Category::get();
+        $this->categories = Category::root()->get();
     }
 
     /**

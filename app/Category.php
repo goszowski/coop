@@ -4,12 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Category extends Model
 {
-    use PresentableTrait;
+    use PresentableTrait, HasSlug;
 
     protected $presenter = 'App\Presenters\CategoryPresenter';
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 
     /**
      * The database table used by the model.
@@ -30,7 +42,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_category_id', 'name'];
+    protected $fillable = ['parent_category_id', 'name', 'slug'];
 
     public function parent()
     {
@@ -40,6 +52,11 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_category_id');
+    }
+
+    public function scopeRoot($query)
+    {
+        return $query->whereNull('parent_category_id');
     }
 
 }

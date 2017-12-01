@@ -15,6 +15,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
+Route::group(['as'=>'app.'], function() {
+    Route::get('/categories/{slug}', ['as'=>'categories.show', 'uses'=>'CategoriesController@show']);
+});
+
 Route::group(['middleware'=>['auth']], function() {
 
     Route::group(['middleware'=>['api_token'], 'namespace'=>'Api', 'as'=>'api.'], function() {
