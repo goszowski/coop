@@ -4,6 +4,8 @@
 
 @section('app')
 
+	<div class="particles"></div>
+
 	<div class="center-wrapper">
 		<div class="center-content">
 			<div class="row no-m">

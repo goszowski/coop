@@ -76,6 +76,13 @@
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
 }
+
+  .particles {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    opacity: 0.2;
+  }
   </style>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -96,6 +103,7 @@
   <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
   <script src="{{ asset('vendor/jripple/ripple.min.js') }}"></script>
+  <script src="{{ asset('vendor/particleground/jquery.particleground.min.js') }}"></script>
   {{-- <script src="{{ asset('vendor/smartmenus/dist/jquery.smartmenus.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.min.js') }}"></script> --}}
   <script src="{{ asset('vendor/slimScroll/jquery.slimscroll.js') }}"></script>
@@ -126,6 +134,11 @@
       $('.ripple-white').ripple({
         color:'rgba(255, 255, 255, 0.3)',
         time:'.35s'
+      });
+
+      $('.particles').particleground({
+        dotColor: '#5cbdaa',
+        lineColor: '#5cbdaa'
       });
 
 
