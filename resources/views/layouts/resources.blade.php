@@ -1,4 +1,4 @@
-<!doctype html>
+@if(!request('ajax'))<!doctype html>
 <html class="no-js" lang="">
 
 <head>
@@ -98,13 +98,18 @@
 <!-- body -->
 
 <body class="@yield('body-class')">
+  @endif
+
   @yield('app')
+
+  @if(!request('ajax'))
 
   <!-- build:js({.tmp,app}) scripts/app.min.js -->
   <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
   <script src="{{ asset('vendor/jripple/ripple.min.js') }}"></script>
   <script src="{{ asset('vendor/pace/pace.js') }}"></script>
+  <script src="{{ asset('vendor/ajax-navigation/ajax-navigation.js') }}"></script>
   <script src="{{ asset('vendor/particleground/jquery.particleground.min.js') }}"></script>
   {{-- <script src="{{ asset('vendor/smartmenus/dist/jquery.smartmenus.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.min.js') }}"></script> --}}
@@ -133,36 +138,48 @@
           }
       });
 
-      $('.ripple-white').ripple({
-        color:'rgba(255, 255, 255, 0.3)',
-        time:'.35s'
-      });
+      function buildPage()
+      {
+        $('[data-toggle="dropdown"]').parent().removeClass('open');
+        
+        $('.ripple-white').ripple({
+          color:'rgba(255, 255, 255, 0.3)',
+          time:'.35s'
+        });
 
-      $('.particles').particleground({
-        dotColor: '#5cbdaa',
-        lineColor: '#5cbdaa'
-      });
+        $('.particles').particleground({
+          dotColor: '#5cbdaa',
+          lineColor: '#5cbdaa'
+        });
 
 
-      $('[data-api-route]').each(function() {
-        var item = $(this);
-        var action = item.data('api-route') + '?api_token=' + item.data('api-token');
+        $('[data-api-route]').each(function() {
+          var item = $(this);
+          var action = item.data('api-route') + '?api_token=' + item.data('api-token');
 
-        item.select2({
-            minimumInputLength: 3,
-            language: '{{ config('app.locale') }}',
-            ajax: {
-              delay: 500,
-              url: action,
-              dataType: 'json',
-              data: function (term, page) {
-                return {
-                  q: term
+          item.select2({
+              minimumInputLength: 3,
+              language: '{{ config('app.locale') }}',
+              ajax: {
+                delay: 500,
+                url: action,
+                dataType: 'json',
+                data: function (term, page) {
+                  return {
+                    q: term
+                  }
                 }
               }
-            }
+          });
         });
+      }
+
+      var navigation = new AjaxNavigation();
+      navigation.onPageLoad(function() {
+        buildPage();
       });
+
+      buildPage();
     });
   </script>
 
@@ -174,3 +191,4 @@
 <!-- /body -->
 
 </html>
+@endif

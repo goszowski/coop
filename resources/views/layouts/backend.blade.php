@@ -1,3 +1,5 @@
+@if(!request('ajax'))
+
 @extends('layouts.resources')
 
 @section('app')
@@ -13,7 +15,7 @@
           <!-- /toggle offscreen menu -->
 
           <!-- logo -->
-          <a href="{{ url('/') }}" class="navbar-brand ripple-white">
+          <a href="{{ url('/') }}" class="navbar-brand ripple-white" data-ajax="true">
             <img src="{{ asset('images/logo.png') }}" style="margin-top: 0;" alt="coop">
           </a>
           <!-- /logo -->
@@ -123,7 +125,13 @@
               <div class="container">
                 <ol class="breadcrumb"> <li> <a href="javascript:;"><i class="ti-home mr5"></i>Dashboard</a> </li> <li> <a href="javascript:;"><i class="ti-window mr5"></i>Tables</a> </li> <li class="active">Basic Table Elements</li> </ol>
             
-                @yield('content')
+                <div id="app">
+                  @endif
+
+                  @yield('content')
+
+                  @if(!request('ajax'))
+                </div>
               </div>
 
           </div>
@@ -139,3 +147,5 @@
 
   </div>
 @endsection
+
+@endif
