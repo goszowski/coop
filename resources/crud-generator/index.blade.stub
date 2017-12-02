@@ -39,21 +39,21 @@
                                     %%formBodyHtml%%
                                     <td>
                                         <div class="btn-group">
-                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.up', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                            {!! Form::open(['route'=>['admin.%%viewName%%.move.up', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
                                                 <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-up"></i></button>
                                             {!! Form::close() !!}
 
-                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.down', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                            {!! Form::open(['route'=>['admin.%%viewName%%.move.down', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
                                                 <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-down"></i></button>
                                             {!! Form::close() !!}
 
                                             &nbsp;
 
-                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.start', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                            {!! Form::open(['route'=>['admin.%%viewName%%.move.start', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
                                                 <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-up"></i></button>
                                             {!! Form::close() !!}
 
-                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.end', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                            {!! Form::open(['route'=>['admin.%%viewName%%.move.end', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
                                                 <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-down"></i></button>
                                             {!! Form::close() !!}
                                         </div>
