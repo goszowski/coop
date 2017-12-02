@@ -29,7 +29,7 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th>ID</th>%%formHeadingHtml%%<th>Actions</th>
+                                    <th>ID</th>%%formHeadingHtml%%<th>Ordering</th><th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,6 +37,27 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     %%formBodyHtml%%
+                                    <td>
+                                        <div class="btn-group">
+                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.up', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-up"></i></button>
+                                            {!! Form::close() !!}
+
+                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.down', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-down"></i></button>
+                                            {!! Form::close() !!}
+
+                                            &nbsp;
+
+                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.start', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-up"></i></button>
+                                            {!! Form::close() !!}
+
+                                            {!! Form::open(['route'=>['admin.%%routeGroup%%.move.end', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-down"></i></button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </td>
                                     <td>
                                         <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}" title="View %%modelName%%"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Переглянути</button></a>
                                         <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%% . '/edit') }}" title="Edit %%modelName%%"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Редагувати</button></a>

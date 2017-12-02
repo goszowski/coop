@@ -123,4 +123,28 @@ class DummyClass extends Controller
 
         return redirect('{{routeGroup}}{{viewName}}');
     }
+
+    public function moveUp({{modelName}} ${{crudName}})
+    {
+        ${{crudName}}->moveOrderUp();
+        return redirect()->back();
+    }
+
+    public function moveDown({{modelName}} ${{crudName}})
+    {
+        ${{crudName}}->moveOrderDown();
+        return redirect()->back();
+    }
+
+    public function moveToStart({{modelName}} ${{crudName}})
+    {
+        ${{crudName}}->moveToStart();
+        return redirect()->back();
+    }
+
+    public function moveToEnd({{modelName}} ${{crudName}})
+    {
+        ${{crudName}}->moveToEnd();
+        return redirect()->back();
+    }
 }
