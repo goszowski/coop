@@ -83,7 +83,6 @@
     position: absolute;
     left: 0; right: 0;
     top: 0; bottom: 0;
-    opacity: 0.3;
   }
   </style>
 
@@ -159,8 +158,11 @@
         });
 
         $('.particles').particleground({
-          dotColor: '#5cbdaa',
-          lineColor: '#5cbdaa'
+          dotColor: 'rgba(255, 255, 255, 0.3)',
+          lineColor: 'rgba(255, 255, 255, 0.1)',
+          lineWidth: 1,
+          particleRadius: 5,
+          parallax: false,
         });
 
 
