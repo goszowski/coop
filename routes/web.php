@@ -90,3 +90,9 @@ Route::patch('admin/categories/{category}/move/down', ['as'=>'admin.categories.m
 Route::patch('admin/categories/{category}/move/start', ['as'=>'admin.categories.move.start', 'uses'=>'Admin\\CategoriesController@moveToStart']);
 Route::patch('admin/categories/{category}/move/end', ['as'=>'admin.categories.move.end', 'uses'=>'Admin\\CategoriesController@moveToEnd']);
 
+
+Route::resource('admin/products', 'Admin\\ProductsController');
+Route::patch('admin/products/{product}/move/up', ['as'=>'admin.products.move.up', 'uses'=>'Admin\\ProductsController@moveUp']);
+Route::patch('admin/products/{product}/move/down', ['as'=>'admin.products.move.down', 'uses'=>'Admin\\ProductsController@moveDown']);
+Route::patch('admin/products/{product}/move/start', ['as'=>'admin.products.move.start', 'uses'=>'Admin\\ProductsController@moveToStart']);
+Route::patch('admin/products/{product}/move/end', ['as'=>'admin.products.move.end', 'uses'=>'Admin\\ProductsController@moveToEnd']);
