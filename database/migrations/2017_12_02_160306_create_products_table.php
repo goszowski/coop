@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('position');
             $table->string('name');
+            $table->string('slug');
             $table->decimal('price');
             $table->integer('count_in_pack');
             $table->timestamps();
