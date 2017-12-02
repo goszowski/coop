@@ -22,7 +22,7 @@ class AppComposer
      */
     public function __construct()
     {
-        $this->categories = Category::root()->get();
+        $this->categories = Category::root()->ordered()->get();
     }
 
     /**

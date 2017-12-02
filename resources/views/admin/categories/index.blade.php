@@ -29,7 +29,7 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Name</th><th>Full name</th><th>Actions</th>
+                                        <th>ID</th><th>Name</th><th>Full name</th><th>Ordering</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +38,27 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->present()->fullName }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                {!! Form::open(['route'=>['admin.categories.move.up', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                    <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-up"></i></button>
+                                                {!! Form::close() !!}
+
+                                                {!! Form::open(['route'=>['admin.categories.move.down', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                    <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-down"></i></button>
+                                                {!! Form::close() !!}
+
+                                                &nbsp;
+
+                                                {!! Form::open(['route'=>['admin.categories.move.start', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                    <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-up"></i></button>
+                                                {!! Form::close() !!}
+
+                                                {!! Form::open(['route'=>['admin.categories.move.end', $item], 'method'=>'patch', 'style'=>'display: inline']) !!}
+                                                    <button class="btn btn-xs btn-default ripple-dark"><i class="fa fa-angle-double-down"></i></button>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </td>
                                         <td>
                                             <a href="{{ url('/admin/categories/' . $item->id) }}" title="View Category"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/categories/' . $item->id . '/edit') }}" title="Edit Category"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

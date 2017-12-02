@@ -43,17 +43,13 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
-            \Illuminate\Session\Middleware\StartSession::class,
         ],
-
-        // 'sessions' => [
-        //     \Illuminate\Session\Middleware\StartSession::class
-        // ],
     ];
 
     /**
@@ -74,5 +70,6 @@ class Kernel extends HttpKernel
         'roles' => \App\Http\Middleware\CheckRole::class,
         'auth_active' => \App\Http\Middleware\AuthActive::class,
         'api_token' => \App\Http\Middleware\VerifyApiToken::class,
+        'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
     ];
 }

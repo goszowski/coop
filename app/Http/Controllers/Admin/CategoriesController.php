@@ -23,9 +23,9 @@ class CategoriesController extends Controller
 
         if (!empty($keyword)) {
             $categories = Category::where('name', 'LIKE', "%$keyword%")
-				->paginate($perPage);
+				->ordered()->paginate($perPage);
         } else {
-            $categories = Category::paginate($perPage);
+            $categories = Category::ordered()->paginate($perPage);
         }
 
         return view('admin.categories.index', compact('categories'));
@@ -127,5 +127,29 @@ class CategoriesController extends Controller
         Session::flash('flash_message', 'Category deleted!');
 
         return redirect('admin/categories');
+    }
+
+    public function moveUp(Category $category)
+    {
+        $category->moveOrderUp();
+        return redirect()->back();
+    }
+
+    public function moveDown(Category $category)
+    {
+        $category->moveOrderDown();
+        return redirect()->back();
+    }
+
+    public function moveToStart(Category $category)
+    {
+        $category->moveToStart();
+        return redirect()->back();
+    }
+
+    public function moveToEnd(Category $category)
+    {
+        $category->moveToEnd();
+        return redirect()->back();
     }
 }

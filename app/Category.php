@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class Category extends Model
+class Category extends Model implements Sortable
 {
-    use PresentableTrait, HasSlug;
+    use PresentableTrait, HasSlug, SortableTrait;
 
     protected $presenter = 'App\Presenters\CategoryPresenter';
 
@@ -22,6 +24,11 @@ class Category extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public $sortable = [
+        'order_column_name' => 'position',
+        'sort_when_creating' => true,
+    ];
 
     /**
      * The database table used by the model.

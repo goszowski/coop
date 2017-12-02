@@ -11,7 +11,52 @@
 |
 */
 
-Auth::routes();
+Route::get('login', [
+  'middleware' => ['doNotCacheResponse'],
+  'as' => 'login',
+  'uses' => 'Auth\LoginController@showLoginForm',
+]);
+
+
+    Route::post('login', [
+      'as' => '',
+      'uses' => 'Auth\LoginController@login',
+      'middleware' => 'doNotCacheResponse',
+    ]);
+    Route::post('logout', [
+      'as' => 'logout',
+      'uses' => 'Auth\LoginController@logout',
+      'middleware' => 'doNotCacheResponse',
+    ]);
+
+    // Password Reset Routes...
+    Route::post('password/email', [
+      'as' => 'password.email',
+      'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
+    ]);
+    Route::get('password/reset', [
+      'as' => 'password.request',
+      'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm'
+    ]);
+    Route::post('password/reset', [
+      'as' => '',
+      'uses' => 'Auth\ResetPasswordController@reset'
+    ]);
+    Route::get('password/reset/{token}', [
+      'as' => 'password.reset',
+      'uses' => 'Auth\ResetPasswordController@showResetForm'
+    ]);
+
+    // Registration Routes...
+    Route::get('register', [
+      'as' => 'register',
+      'uses' => 'Auth\RegisterController@showRegistrationForm'
+    ]);
+    Route::post('register', [
+      'as' => '',
+      'uses' => 'Auth\RegisterController@register'
+    ]);
+
 
 Route::get('/', 'HomeController@index');
 
@@ -40,3 +85,8 @@ Route::group(['middleware'=>['auth']], function() {
     
 });
 Route::resource('admin/categories', 'Admin\\CategoriesController');
+Route::patch('admin/categories/{category}/move/up', ['as'=>'admin.categories.move.up', 'uses'=>'Admin\\CategoriesController@moveUp']);
+Route::patch('admin/categories/{category}/move/down', ['as'=>'admin.categories.move.down', 'uses'=>'Admin\\CategoriesController@moveDown']);
+Route::patch('admin/categories/{category}/move/start', ['as'=>'admin.categories.move.start', 'uses'=>'Admin\\CategoriesController@moveToStart']);
+Route::patch('admin/categories/{category}/move/end', ['as'=>'admin.categories.move.end', 'uses'=>'Admin\\CategoriesController@moveToEnd']);
+
