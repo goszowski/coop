@@ -11,6 +11,7 @@
         "laracasts/presenter": "^0.2.1",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/laravel-sluggable": "^2.1",
         "tylercd100/lern": "^4.2"
     },
