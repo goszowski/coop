@@ -1,11 +1,6 @@
 @extends('layouts.auth')
 
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
 
 <form method="POST" action="{{ route('password.email') }}">
     {{ csrf_field() }}
@@ -28,4 +23,14 @@
         Надіслати посилання для відновлення
     </button>
 </form>
+@endsection
+
+@section('scripts')
+    @if (session('status'))
+    <script>
+        $(function() {
+            toastr.success('{{ session('status') }}');
+        });
+    </script>
+    @endif
 @endsection
