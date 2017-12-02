@@ -12,21 +12,18 @@
 
   <title>Укркоопспілка</title>
 
-  <!-- page level plugin styles -->
-  <!-- /page level plugin styles -->
 
-  <!-- build:css({.tmp,app}) styles/app.min.css -->
-  <link rel="stylesheet" href="{{ asset('vendor/select2/dist/css/select2.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendor/jripple/ripple.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendor/pace/pace.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
-  {{-- <link rel="stylesheet" href="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.css') }}"> --}}
-  <link rel="stylesheet" href="{{ asset('styles/font-awesome.css') }}">
-  <link rel="stylesheet" href="{{ asset('styles/themify-icons.css') }}">
-  <link rel="stylesheet" href="{{ asset('styles/animate.css') }}">
-  <link rel="stylesheet" href="{{ asset('styles/sublime.css') }}">
-  <!-- endbuild -->
+  {!! Minify::stylesheet([
+      '/vendor/select2/dist/css/select2.min.css',
+      '/vendor/bootstrap/dist/css/bootstrap.min.css',
+      '/vendor/jripple/ripple.css',
+      '/vendor/pace/pace.css',
+      '/vendor/toastr/toastr.min.css',
+      '/styles/font-awesome.css',
+      '/styles/themify-icons.css',
+      '/styles/animate.css',
+      '/styles/sublime.css',
+  ]) !!}
 
   <style>
     .text-white {color: #fff!important;}
@@ -104,32 +101,25 @@
 
   @if(!request('ajax'))
 
-  <!-- build:js({.tmp,app}) scripts/app.min.js -->
-  <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
-  <script src="{{ asset('vendor/jripple/ripple.min.js') }}"></script>
-  <script src="{{ asset('vendor/pace/pace.js') }}"></script>
-  <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
-  <script src="{{ asset('vendor/ajax-navigation/ajax-navigation.js') }}"></script>
-  <script src="{{ asset('vendor/particleground/jquery.particleground.min.js') }}"></script>
-  {{-- <script src="{{ asset('vendor/smartmenus/dist/jquery.smartmenus.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('vendor/smartmenus/dist/addons/bootstrap/jquery.smartmenus.bootstrap.min.js') }}"></script> --}}
-  <script src="{{ asset('vendor/slimScroll/jquery.slimscroll.js') }}"></script>
-  <script src="{{ asset('vendor/jquery.easing/jquery.easing.js') }}"></script>
-  <script src="{{ asset('vendor/jquery_appear/jquery.appear.js') }}"></script>
-  <script src="{{ asset('vendor/jquery.placeholder.js') }}"></script>
-  <script src="{{ asset('vendor/fastclick/lib/fastclick.js') }}"></script>
-  <script src="{{ asset('vendor/select2/dist/js/select2.min.js') }}"></script>
-  <script src="{{ asset('vendor/select2/dist/js/i18n/'.config('app.locale').'.js') }}"></script>
-  <!-- endbuild -->
 
-  <!-- page level scripts -->
-  <!-- /page level scripts -->
 
-  <!-- template scripts -->
-  <script src="{{ asset('scripts/offscreen.js') }}"></script>
-  <script src="{{ asset('scripts/main.js') }}"></script>
-  <!-- /template scripts -->
+  {!! Minify::javascript([
+      '/vendor/jquery/dist/jquery.js',
+      '/vendor/bootstrap/dist/js/bootstrap.js',
+      '/vendor/jripple/ripple.min.js',
+      '/vendor/pace/pace.js',
+      '/vendor/toastr/toastr.min.js',
+      '/vendor/ajax-navigation/ajax-navigation.js',
+      '/vendor/particleground/jquery.particleground.min.js',
+      '/vendor/jquery.easing/jquery.easing.js',
+      '/vendor/jquery_appear/jquery.appear.js',
+      '/vendor/jquery.placeholder.js',
+      '/vendor/fastclick/lib/fastclick.js',
+      '/vendor/select2/dist/js/select2.min.js',
+      '/vendor/select2/dist/js/i18n/'.config('app.locale').'.js',
+      '/scripts/offscreen.js',
+      '/scripts/main.js',
+  ]) !!}
 
   <script>
     $(function() {

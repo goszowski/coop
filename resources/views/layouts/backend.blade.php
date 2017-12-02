@@ -16,7 +16,7 @@
 
           <!-- logo -->
           <a href="{{ url('/') }}" class="navbar-brand ripple-white" data-ajax="true">
-            <img src="{{ asset('images/logo.png') }}" style="margin-top: 0;" alt="coop">
+            <img src="{{ asset('images/logo.png') }}" style="margin-top: 0!important;" alt="coop">
           </a>
           <!-- /logo -->
         </div>
@@ -99,7 +99,7 @@
             <li class="off-right">
               <a href="{{ route('login') }}" class="ripple-white">
                 <i class="fa fa-sign-in" aria-hidden="true"></i>
-                <span class="hidden-xs">Вхід</span>
+                <span class="hidden-xs"> Вхід</span>
               </a>
             </li>
           @endif
