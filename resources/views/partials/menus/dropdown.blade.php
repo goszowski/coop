@@ -1,7 +1,7 @@
 <ul class="dropdown-menu multi-level">
   @foreach($categories as $category)
     <li class="{{ count($category->children) ? 'dropdown-submenu' : null }}">
-	    <a @if(!count($category->children)) href="{{ route('app.categories.show', $category->slug) }}" @endif class="ripple-dark" data-ajax="true">
+	    <a href="{{ route('app.categories.show', $category->slug) }}" class="ripple-dark" data-ajax="true">
 	      	<span>{{ $category->name }}</span>
 	    </a>
 
