@@ -96,3 +96,25 @@ Route::patch('admin/products/{product}/move/up', ['as'=>'admin.products.move.up'
 Route::patch('admin/products/{product}/move/down', ['as'=>'admin.products.move.down', 'uses'=>'Admin\\ProductsController@moveDown']);
 Route::patch('admin/products/{product}/move/start', ['as'=>'admin.products.move.start', 'uses'=>'Admin\\ProductsController@moveToStart']);
 Route::patch('admin/products/{product}/move/end', ['as'=>'admin.products.move.end', 'uses'=>'Admin\\ProductsController@moveToEnd']);
+
+
+Route::resource('admin/statuses', 'Admin\\StatusesController');
+Route::patch('admin/statuses/{status}/move/up', ['as'=>'admin.statuses.move.up', 'uses'=>'Admin\\StatusesController@moveUp']);
+Route::patch('admin/statuses/{status}/move/down', ['as'=>'admin.statuses.move.down', 'uses'=>'Admin\\StatusesController@moveDown']);
+Route::patch('admin/statuses/{status}/move/start', ['as'=>'admin.statuses.move.start', 'uses'=>'Admin\\StatusesController@moveToStart']);
+Route::patch('admin/statuses/{status}/move/end', ['as'=>'admin.statuses.move.end', 'uses'=>'Admin\\StatusesController@moveToEnd']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
