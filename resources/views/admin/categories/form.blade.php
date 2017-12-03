@@ -6,8 +6,6 @@
     </div>
 </div>
 
-{{session('ajax_token')}}
-
 <div class="form-group {{ $errors->has('parent_category_id') ? 'has-error' : ''}}">
     {!! Form::label('parent_category_id', 'Батьківська категорія', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
