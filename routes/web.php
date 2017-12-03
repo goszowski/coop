@@ -105,6 +105,11 @@ Route::patch('admin/statuses/{status}/move/start', ['as'=>'admin.statuses.move.s
 Route::patch('admin/statuses/{status}/move/end', ['as'=>'admin.statuses.move.end', 'uses'=>'Admin\\StatusesController@moveToEnd']);
 
 
+Route::resource('admin/delivery-services', 'Admin\\DeliveryServicesController');
+Route::patch('admin/delivery-services/{delivery-service}/move/up', ['as'=>'admin.delivery-services.move.up', 'uses'=>'Admin\\DeliveryServicesController@moveUp']);
+Route::patch('admin/delivery-services/{delivery-service}/move/down', ['as'=>'admin.delivery-services.move.down', 'uses'=>'Admin\\DeliveryServicesController@moveDown']);
+Route::patch('admin/delivery-services/{delivery-service}/move/start', ['as'=>'admin.delivery-services.move.start', 'uses'=>'Admin\\DeliveryServicesController@moveToStart']);
+Route::patch('admin/delivery-services/{delivery-service}/move/end', ['as'=>'admin.delivery-services.move.end', 'uses'=>'Admin\\DeliveryServicesController@moveToEnd']);
 
 
 
