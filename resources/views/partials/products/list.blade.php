@@ -33,7 +33,7 @@
 							<b>{{ $product->name }}</b>
 							<small class="show">{{ $product->category->present()->fullName }}</small>
 							<div class="show"></div>
-							<a href="javascript:;" class="btn btn-default btn-sm mt5">Додати до замовлення</a>
+							<a href="javascript:;" class="btn btn-default btn-sm mt5 ripple-dark">Переглянути</a>
 						</div>
 					</div>
 				</section>

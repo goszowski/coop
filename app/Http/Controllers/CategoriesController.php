@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     		$products = $products->orWhere('category_id', $descendantCategory->id);
     	}
 
-    	$products = $products->ordered()->paginate();
+    	$products = $products->ordered()->paginate(12);
 
     	return view('categories.show', compact('products', 'category'));
     }
