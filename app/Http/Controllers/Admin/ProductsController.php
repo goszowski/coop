@@ -54,6 +54,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
 			'name' => 'required',
 			'price' => 'required',
 			'count_in_pack' => 'required'
@@ -106,6 +107,7 @@ class ProductsController extends Controller
     public function update($id, Request $request)
     {
         $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
 			'name' => 'required',
 			'price' => 'required',
 			'count_in_pack' => 'required'

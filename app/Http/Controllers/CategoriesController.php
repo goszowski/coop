@@ -11,6 +11,8 @@ class CategoriesController extends Controller
     {
     	$category = Category::whereSlug($slug)->firstOrFail();
 
+    	
+
     	return view('categories.show');
     }
 }

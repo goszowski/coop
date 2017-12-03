@@ -46,7 +46,12 @@ class Product extends Model implements Sortable
      *
      * @var array
      */
-    protected $fillable = ['name', 'price', 'count_in_pack'];
+    protected $fillable = ['category_id', 'name', 'price', 'count_in_pack'];
 
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
     
 }
