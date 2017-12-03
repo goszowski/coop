@@ -119,6 +119,7 @@
       '/vendor/select2/dist/js/i18n/'.config('app.locale').'.js',
       '/scripts/offscreen.js',
       '/scripts/main.js',
+      '/vendor/preventDoubleSubmission/preventDoubleSubmission.js',
   ]) !!}
 
   <script>
@@ -132,6 +133,7 @@
       function buildPage()
       {
         $('[data-toggle="dropdown"]').parent().removeClass('open');
+        $('form').preventDoubleSubmission();
 
         setTimeout(function() {
           $('.ripple-white, .ripple-dark').find('.ink').remove();
