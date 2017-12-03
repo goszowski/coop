@@ -53,6 +53,9 @@
                 </li>
               </ul>
             </li>
+            <li>
+              <a href="{{ route('app.delivery-addresses.index') }}" data-ajax="true" class="ripple-white">Адреси доставки</a>
+            </li>
             
           </ul>
         </div>

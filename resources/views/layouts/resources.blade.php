@@ -26,6 +26,7 @@
   ]) !!}
 
   <style>
+  .display-inline {display: inline;}
     .text-white {color: #fff!important;}
     .dropdown-submenu {
   position: relative;
@@ -192,6 +193,14 @@
     <script>
         $(function() {
             toastr.error('{{ session('error') }}');
+        });
+    </script>
+  @endif
+
+  @if (session('success'))
+    <script>
+        $(function() {
+            toastr.success('{{ session('success') }}');
         });
     </script>
   @endif

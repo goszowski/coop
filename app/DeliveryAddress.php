@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use Laracasts\Presenter\PresentableTrait;
 
 class DeliveryAddress extends Model
-{   
+{
+    use PresentableTrait;
+
+    protected $presenter = 'App\Presenters\DeliveryAddressPresenter';
+    
     /**
      * The database table used by the model.
      *
@@ -35,5 +41,10 @@ class DeliveryAddress extends Model
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function scopeOwn($query)
+    {
+        return $query->where('user_id', Auth::id());
     }
 }
