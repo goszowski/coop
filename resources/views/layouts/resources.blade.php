@@ -188,6 +188,14 @@
     });
   </script>
 
+  @if (session('error'))
+    <script>
+        $(function() {
+            toastr.error('{{ session('error') }}');
+        });
+    </script>
+  @endif
+
   <!-- page script -->
   @yield('scripts')
   <!-- /page script -->

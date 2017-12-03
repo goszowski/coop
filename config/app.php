@@ -169,6 +169,7 @@ return [
          */
 
         Devfactory\Minify\MinifyServiceProvider::class,
+        Ircop\Antiflood\AntifloodServiceProvider::class,
 
         /*
          * Application Service Providers...
