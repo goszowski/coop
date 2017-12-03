@@ -66,13 +66,21 @@ Route::group(['as'=>'app.'], function() {
 
 Route::group(['middleware'=>['auth']], function() {
 
-    Route::group(['middleware'=>['api_token'], 'namespace'=>'Api', 'as'=>'api.'], function() {
+    Route::group(['namespace'=>'Api', 'as'=>'api.'], function() {
         Route::group(['prefix'=>'category', 'as'=>'category.'], function() {
             Route::get('find-by-name', ['as'=>'find-by-name', 'uses'=>'CategoriesController@findByName']);
         });
 
         Route::group(['prefix'=>'region', 'as'=>'region.'], function() {
             Route::get('find-by-name', ['as'=>'find-by-name', 'uses'=>'RegionsController@findByName']);
+        });
+
+        Route::group(['prefix'=>'user', 'as'=>'user.'], function() {
+            Route::get('find-by-email', ['as'=>'find-by-email', 'uses'=>'UsersController@findByEmail']);
+        });
+
+        Route::group(['prefix'=>'area', 'as'=>'area.'], function() {
+            Route::get('find-by-name', ['as'=>'find-by-name', 'uses'=>'AreasController@findByName']);
         });
     });
 
@@ -122,27 +130,28 @@ Route::patch('admin/regions/{region}/move/down', ['as'=>'admin.regions.move.down
 Route::patch('admin/regions/{region}/move/start', ['as'=>'admin.regions.move.start', 'uses'=>'Admin\\RegionsController@moveToStart']);
 Route::patch('admin/regions/{region}/move/end', ['as'=>'admin.regions.move.end', 'uses'=>'Admin\\RegionsController@moveToEnd']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::resource('admin/areas', 'Admin\\AreasController');
+Route::resource('admin/delivery-addresses', 'Admin\\DeliveryAddressesController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,15 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Area extends Model {
 
-  protected $table      = 'areas';
-  protected $fillable   = ['region_id', 'name'];
+	use PresentableTrait;
 
-  public function region()
-  {
-    return $this->belongsTo(Region::class, 'region_id');
-  }
+	protected $presenter = 'App\Presenters\AreaPresenter';
+
+	protected $table      = 'areas';
+	protected $fillable   = ['region_id', 'name'];
+
+	public function region()
+	{
+		return $this->belongsTo(Region::class, 'region_id');
+	}
 
 }

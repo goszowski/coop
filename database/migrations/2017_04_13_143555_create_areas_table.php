@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Area;
 
-class CreateUkraineAreasTable extends Migration
+class CreateAreasTable extends Migration
 {
     protected $areas = array(
       array("1" => "Барський"),

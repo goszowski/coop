@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Area;
 
-class UsersController extends Controller
+class AreasController extends Controller
 {
-    public function findbyEmail()
+    public function findByName()
     {
         $results = [[
           'id' => 0,
@@ -21,11 +21,11 @@ class UsersController extends Controller
         // Searching
         if($term)
         {
-            foreach(User::where('email', 'like', '%'.$term.'%')->get() as $user)
+            foreach(Area::where('name', 'like', '%'.$term.'%')->get() as $area)
             {
                 $results[] = [
-                    'id' => $user->id,
-                    'text' => $user->email . ' ('.$user->name.')',
+                    'id' => $area->id,
+                    'text' => $area->present()->fullName,
                 ];
             }
         }

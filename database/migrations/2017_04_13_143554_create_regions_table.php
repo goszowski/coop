@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Region;
 
-class CreateUkraineRegionsTable extends Migration
+class CreateRegionsTable extends Migration
 {
     protected $regions = [
       "Вінницька",
