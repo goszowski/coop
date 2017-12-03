@@ -21,6 +21,6 @@ class CategoriesController extends Controller
 
     	$products = $products->ordered()->paginate();
 
-    	return view('categories.show', compact('products'));
+    	return view('categories.show', compact('products', 'category'));
     }
 }

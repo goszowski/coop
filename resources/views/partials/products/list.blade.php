@@ -1,3 +1,23 @@
+<ol class="breadcrumb"> 
+	<li> 
+		<a href="{{ url('/') }}" data-ajax="true">
+			<i class="ti-home mr5"></i>
+			Асортимент
+		</a>
+	</li>
+
+	@if(isset($category))
+		@foreach($category->breadcrumbs() as $breadcrumb)
+			<li>
+				<a href="{{ route('app.categories.show', $breadcrumb->slug) }}" data-ajax="true">
+					<i class="ti-window mr5"></i>
+					{{ $breadcrumb->name }}
+				</a>
+			</li>
+		@endforeach
+	@endif
+</ol>
+
 @if(!count($products))
 	<div class="alert alert-info">В цій категорії немає товарів</div>
 @else

@@ -82,4 +82,22 @@ class Category extends Model implements Sortable
         return $query->whereNull('parent_category_id');
     }
 
+    public function breadcrumbs()
+    {
+        $output = [];
+
+        $category = $this;
+        $output[] = $category;
+
+        while($category->parent)
+        {
+            $category = $category->parent;
+            $output[] = $category;
+        }
+
+        krsort($output);
+
+        return $output;
+    }
+
 }
