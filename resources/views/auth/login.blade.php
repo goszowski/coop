@@ -5,7 +5,7 @@
     {{ csrf_field() }}
 
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-        <input id="email" type="email" class="form-control input-lg" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+        <input id="email" type="email" class="form-control input-lg" name="email" value="{{ old('email') ?: request()->cookie('last_login_email') }}" placeholder="Email" required {{ (!old('email') and !request()->cookie('last_login_email')) ? 'autofocus' : null }}>
 
         @if ($errors->has('email'))
             <span class="help-block">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-        <input id="password" type="password" class="form-control input-lg" name="password" placeholder="Пароль" required>
+        <input id="password" type="password" class="form-control input-lg" name="password" placeholder="Пароль" required {{ (old('email') or request()->cookie('last_login_email')) ? 'autofocus' : null }}>
 
         @if ($errors->has('password'))
             <span class="help-block">
@@ -32,7 +32,7 @@
         </div>
 
         <label class="checkbox">
-            <input type="checkbox" name="remember" checked> Запам'ятати мене
+            <input type="checkbox" name="remember"> Запам'ятати мене
         </label>
     </div>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Ircop\Antiflood\Facade\Antiflood;
 use Illuminate\Http\Request;
+use Cookie;
 
 class LoginController extends Controller
 {
@@ -74,6 +75,22 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath())->withCookie(cookie()->forever('last_login_email', $request->email));
     }
 
 }
