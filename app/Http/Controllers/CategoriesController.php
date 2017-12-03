@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
 
 class CategoriesController extends Controller
 {
@@ -11,8 +12,15 @@ class CategoriesController extends Controller
     {
     	$category = Category::whereSlug($slug)->firstOrFail();
 
-    	
+    	$products = Product::where('category_id', $category->id);
 
-    	return view('categories.show');
+    	foreach($category->descendants() as $descendantCategory)
+    	{
+    		$products = $products->orWhere('category_id', $descendantCategory->id);
+    	}
+
+    	$products = $products->paginate();
+
+    	return view('categories.show', compact('products'));
     }
 }

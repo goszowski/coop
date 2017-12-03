@@ -51,6 +51,8 @@ class Category extends Model implements Sortable
      */
     protected $fillable = ['parent_category_id', 'name', 'slug'];
 
+    protected $descendantsArr = [];
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_category_id');
@@ -59,6 +61,20 @@ class Category extends Model implements Sortable
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_category_id');
+    }
+
+    public function descendants()
+    {
+        foreach($this->children as $child)
+        {
+            $this->descendantsArr[] = $child;
+            if($child->children)
+            {
+                $child->descendants();
+            }
+        }
+
+        return $this->descendantsArr;
     }
 
     public function scopeRoot($query)
