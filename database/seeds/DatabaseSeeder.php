@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
+        // Product::truncate();
+        // Category::truncate();
+
     	foreach(['Пакети', 'Кульки'] as $a=>$categoryName)
     	{
     		$category = Category::create([

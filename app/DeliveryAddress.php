@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class DeliveryAddress extends Model
 {
@@ -46,5 +47,35 @@ class DeliveryAddress extends Model
     public function scopeOwn($query)
     {
         return $query->where('user_id', Auth::id());
+    }
+
+    public static function create(array $attributes = [])
+    {
+        $model = parent::query()->create($attributes);
+
+        ResponseCache::flush();
+
+        return $model;
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        parent::update($attributes, $options);
+
+        ResponseCache::flush();
+    }
+
+    public function delete()
+    {
+        parent::delete();
+
+        ResponseCache::flush();
+    }
+
+    public function save(array $options = [])
+    {
+        parent::save($options);
+
+        ResponseCache::flush();
     }
 }

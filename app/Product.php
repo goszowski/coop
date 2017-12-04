@@ -7,6 +7,7 @@ use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class Product extends Model implements Sortable
 {
@@ -52,6 +53,36 @@ class Product extends Model implements Sortable
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public static function create(array $attributes = [])
+    {
+        $model = parent::query()->create($attributes);
+
+        ResponseCache::flush();
+
+        return $model;
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        parent::update($attributes, $options);
+
+        ResponseCache::flush();
+    }
+
+    public function delete()
+    {
+        parent::delete();
+
+        ResponseCache::flush();
+    }
+
+    public function save(array $options = [])
+    {
+        parent::save($options);
+
+        ResponseCache::flush();
     }
     
 }

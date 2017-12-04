@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class Category extends Model implements Sortable
 {
@@ -103,7 +104,30 @@ class Category extends Model implements Sortable
             $category->save();
         }
 
+        ResponseCache::flush();
+
         return $category;
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        parent::update($attributes, $options);
+
+        ResponseCache::flush();
+    }
+
+    public function delete()
+    {
+        parent::delete();
+
+        ResponseCache::flush();
+    }
+
+    public function save(array $options = [])
+    {
+        parent::save($options);
+
+        ResponseCache::flush();
     }
 
 }
