@@ -61,7 +61,8 @@ Route::get('login', [
 Route::get('/', 'HomeController@index');
 
 Route::group(['as'=>'app.'], function() {
-    Route::get('/categories/{slug}', ['as'=>'categories.show', 'uses'=>'CategoriesController@show']);
+    Route::get('/categories/{slug}', ['as'=>'categories.show', 'uses'=>'CategoriesController@show'])
+      ->where('slug', '(.*)');;
 
     Route::resource('delivery-addresses', 'DeliveryAddressesController');
 });

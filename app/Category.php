@@ -4,26 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Category extends Model implements Sortable
 {
-    use PresentableTrait, HasSlug, SortableTrait;
+    use PresentableTrait, SortableTrait;
 
     protected $presenter = 'App\Presenters\CategoryPresenter';
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
 
     public $sortable = [
         'order_column_name' => 'position',
@@ -98,6 +86,24 @@ class Category extends Model implements Sortable
         krsort($output);
 
         return $output;
+    }
+
+    public static function create(array $attributes = [])
+    {
+        $slug = str_slug($attributes['name']);
+        $attributes['slug'] = $slug;
+
+        $category = parent::query()->create($attributes);
+
+        // dd($category->breadcrumbs());
+
+        if($category->parent)
+        {
+            $category->slug = $category->parent->slug . '/' . $category->slug;
+            $category->save();
+        }
+
+        return $category;
     }
 
 }
