@@ -38,18 +38,18 @@ var sublimeApp = function () {
     });
 
     // On browser resize recaulculate slimscroll height
-    $(window).resize(function () {
-      equalHeightWidgets();
-      if (!$.browser.mobile && !checkBreakout()) {
-        $('.no-touch .main-navigation').slimScroll({
-          height: 'auto'
-        });
-        $('.no-touch .slimscroll').slimScroll({
-          height: 'auto'
-        });
-        initFooterFix();
-      }
-    });
+    // $(window).resize(function () {
+    //   equalHeightWidgets();
+    //   if (!$.browser.mobile && !checkBreakout()) {
+    //     $('.no-touch .main-navigation').slimScroll({
+    //       height: 'auto'
+    //     });
+    //     $('.no-touch .slimscroll').slimScroll({
+    //       height: 'auto'
+    //     });
+    //     initFooterFix();
+    //   }
+    // });
 
     $(document).mouseup(function () {
       if (searchOpen === true) {

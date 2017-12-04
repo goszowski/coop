@@ -170,6 +170,7 @@ return [
 
         Devfactory\Minify\MinifyServiceProvider::class,
         Ircop\Antiflood\AntifloodServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Minify' => Devfactory\Minify\Facades\MinifyFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
